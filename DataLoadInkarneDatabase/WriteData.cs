@@ -12,7 +12,7 @@ namespace DataLoadInkarneDatabase
     {
         SqlConnection conn;
         string[] s9;
-        string connString = "Data Source=INKARNE\\INKARNESERVER; Initial Catalog=InkarneDBS;User ID=PRIYASH;Password=Inkarne123";
+        string connString = "Data Source=INKARNE\\INKARNESERVER; Initial Catalog=InkarneDBS;User ID=PRIYASH;Password=Inkarne123";;;;;
         LoadData ld;
         List<string[]> list;
         List<string[]> list2;
@@ -57,6 +57,11 @@ namespace DataLoadInkarneDatabase
 
          void writeSKUPricingData()
         {
+            if(conn.State.ToString()=="Closed")
+            {
+                conn.Open();
+            }
+
             //SKU_ID
             string[] s4 = list[3];
             //PRICE
@@ -73,6 +78,11 @@ namespace DataLoadInkarneDatabase
 
          void writeVendorData()
         {
+             if(conn.State.ToString()=="Closed")
+             {
+                conn.Open();
+             }
+
             //VENDOR_ID
             string[] s6 = list[5];
             //VENDOR_NAME
@@ -102,6 +112,10 @@ namespace DataLoadInkarneDatabase
 
          void writeSKUAttributes()
         {
+             if(conn.State.ToString()=="Closed")
+             {
+                conn.Open();
+             }
             //SKU_Cluster_Number
             string[] s11 = list[10];
             //Gender
@@ -171,6 +185,11 @@ namespace DataLoadInkarneDatabase
 
          void writeSKULogic()
         {
+             if(conn.State.ToString()=="Closed")
+             {
+                conn.Open();
+             }
+
             //SKU_CLUSTER_NUMBER
             string[] s1 = list[50];
             //SKU_TITLE
@@ -208,6 +227,12 @@ namespace DataLoadInkarneDatabase
 
          void writeFashionRatingDescription()
         {
+
+             if(conn.State.ToString()=="Closed")
+             {
+                conn.Open();
+             }
+
             string[] s1 = list[58];
             string[] s2 = list[59];
             string[] s3 = list[60];
@@ -245,6 +270,12 @@ namespace DataLoadInkarneDatabase
 
          void writeStyleRatingData()
         {
+
+             if(conn.State.ToString()=="Closed")
+             {
+                conn.Open();
+             }
+
             string[] s1 = list[71];
             string[] s2 = list[72];
             string[] s3 = list[73];
@@ -291,6 +322,12 @@ namespace DataLoadInkarneDatabase
 
         void writeBestSellerInfo()
         {
+
+             if(conn.State.ToString()=="Closed")
+             {
+                conn.Open();
+             }
+
             string query8 = "INSERT INTO BSDetails(BS_Code,BS_Description,BS_Price,BS_SKU_Top,BS_SKU_Bottom,BS_SKU_Jacket) VALUES(@BS_Code,@BS_Description,@BS_Price,@BS_SKU_Top,@BS_SKU_Bottom,@BS_SKU_Jacket)";
            
             for (int i = 1; i < list2.Count(); i++)
@@ -311,6 +348,11 @@ namespace DataLoadInkarneDatabase
 
         void writeComboInfo()
         {
+             if(conn.State.ToString()=="Closed")
+             {
+                conn.Open();
+             }
+
             string query9 = "INSERT INTO ComboDetails(Combo_Code,Combo_Description,Combo_Price,Combo_SKU_Top,Combo_SKU_Bottom) VALUES(@Combo_Code,@Combo_Description,@Combo_Price,@Combo_SKU_Top,@Combo_SKU_Bottom)";
             for(int i=1;i<list3.Count();i++)
             {
@@ -329,6 +371,12 @@ namespace DataLoadInkarneDatabase
 
         public void writeIntoDatabase()
         {
+             if(conn.State.ToString()=="Closed")
+             {
+                conn.Open();
+             }
+
+
             writeSKUData();
             writeSKUPricingData();
             writeVendorData();
